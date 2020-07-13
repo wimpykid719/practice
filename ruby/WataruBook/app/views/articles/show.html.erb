@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @article.body %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @article.user.email %>
+  
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @article.user_id %>
+</p>
+<p>コメントの追加</p>
+  <%= form_for([@article, @comment]) do |f| %>
+  
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.hidden_field :article_id, :value => @article.id %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
+	<strong>Comment:</strong>
+	<% @article.comments.each do |comment| %>
+  
+<div id="user"> ユーザーID</div>
+   <%= comment.user_id %><br>
+<div id="comment"> コメント</div>
+	 <%= comment.content %>
+  
+  <% end %>
+</p>
+<td>
+  <% if @article.liked_by? current_user %>
+      <%= link_to "いいね解除", article_like_path(@article.id), method: :delete %>
+  <% else %>
+      <%= link_to "いいね", article_like_path(@article.id), method: :post %>
+  <% end %>
+</td>
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

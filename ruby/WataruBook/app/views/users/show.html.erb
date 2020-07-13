@@ -1,0 +1,6 @@
+<h1><%= @user.email %> さんのページだよ</h1>
+<% @user.articles.each do |article| %>
+	<%= article.title %>
+	<%= article.body %>
+	<%= article.author %><br>
+<% end %>
