@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Timer</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		
+			<p id="timer">00:00:00</p>
+		
+		<div>
+			<button id="start_stop" class="btn btn-lg btn-primary">START</button>
+		</div>
+	</div>
+
+	<script>
+		seconds = 0;
+		minutes = 0;
+		hours = 0;
+		document.getElementById('start_stop').addEventListener('click', 
+		function () {
+			setInterval(timer, 1000);
+			
+		});
+		const timer = function() {
+			seconds++;
+				const addtime = function(times, next_times) {
+					if (times > 59) {
+						times = 0;
+						//ここで次の時間に+1したい
+						next_times++;
+					}
+					return [times, next_times];
+				}
+				let seconds_minutes = addtime(seconds, minutes);
+				seconds = seconds_minutes[0];
+				minutes = seconds_minutes[1];
+
+				let minutes_hours = addtime(minutes, hours);
+				minutes = minutes_hours[0];
+				hours = minutes_hours[1];
+
+
+				const addzero = function(times) {
+					if (times === 0) {
+						return "00";
+					}
+					if (times < 10 && String(times).indexOf('0')) {
+						times = '0' + times;
+					}
+
+					return times;
+				}
+				seconds = addzero(seconds);
+				minutes = addzero(minutes);
+				hours = addzero(hours);
+
+				document.getElementById('timer').innerHTML = `${hours}：${minutes}：${seconds}`
+		}
+	</script>
+</body>
+</html>
