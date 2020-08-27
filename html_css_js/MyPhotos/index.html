@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Photos</title>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header>
+		<hi>My Photos</hi>
+	</header>
+
+	<div class="container">
+		<div id="img_unit">
+			
+		</div>
+	</div>
+	<script>
+		// let images = [
+		// 	{
+		// 		"path": "img/img01.jpg",
+		// 		"name": "name01",
+		// 		"caption": "コメント1"
+		// 	},
+		// 	{
+		// 		"path": "img/img01.jpg",
+		// 		"name": "name02",
+		// 		"caption": "コメント2"
+		// 	},
+		// 	{
+		// 		"path": "img/img01.jpg",
+		// 		"name": "name03",
+		// 		"caption": "コメント3"
+		// 	}
+		// ];
+
+		const adddata = function(image) {
+			let img;
+			let caption;
+			let div;
+			//imgタグを作成し変数へ
+			img = document.createElement('img');
+			//imgタグsrcに画像のパスを設定
+			img.setAttribute('src', image.path);
+			
+			//divタグを作成し変数へ
+			caption = document.createElement('div');
+			//divタグのクラス名をinnerとする。
+			caption.className = 'inner';
+			//caption=divタグの中身を置き換えている。
+			caption.innerHTML = '<p>' + image.caption + '<span>' + image.name + '</span></p>';
+			
+			//divタグを作成
+			div = document.createElement('div');
+			//class名を設定
+			div.className = 'photo';
+			//divタグにimgの中身のhtmlを追加している。画像
+			div.appendChild(img);
+			//コメントを追加している。
+			div.appendChild(caption);
+			//最後にimage_unitのdiv内に代入している。
+			document.getElementById('img_unit').appendChild(div);
+		}
+		let ajax = new XMLHttpRequest();
+		ajax.open('GET', 'https://h2o-space.com/htmlbook/images.php');
+		ajax.responseType = 'json';
+		ajax.send(null);
+
+		ajax.onreadystatechange = function() {
+			if(ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200) {
+				this.response.forEach(adddata);
+			}
+		};
+		//images.forEach(adddata);
+	</script>
+</body>
+</html>

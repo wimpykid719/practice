@@ -99,3 +99,79 @@ function unique(array) {
 }
 
 console.log(unique(array));
+
+
+//追記より深く理解できると思う。
+
+const arry = [1, 2, 3, 4, 5];
+
+arry.reduce(function(accu, curr) {
+	console.log(accu, curr);
+});
+/*
+出力結果は
+1 2
+undefined 3
+undefined 4
+undefined 5
+なぜこうなるのか？？
+reduceではreturnを付けると、前のループの戻り値をaccuに代入
+して処理を続ける事になる、なのでreduceではreturnが必須となる。
+そして初期値として第二引数を必要とする理由は配列の最初の値上記の場合
+1がaccuに代入されないためにする。それは文字列操作で特に大事になる。
+*/
+
+// const str = 'animation';
+// const strArry = str.split('');
+
+// console.log(strArry);
+
+//animationの文字列に<a>と一文字ずつ区切りを設けたい。
+// const result =strArry.reduce((accu, curr) => {
+// 	return '<' + curr + '>'
+// })
+
+//これだと<n>しか返ってこない。 最後の<n>がresultに代入されるため。
+// console.log(result);
+
+//どうするか accuに代入を繰り返しためていく。
+// const result =strArry.reduce((accu, curr) => {
+// 	return accu + '<' + curr + '>'
+// })
+
+//しかしこれでも最初のaには<>が付かない。それは最初の引数がaccuに代入されるため。
+//console.log(result);
+
+//ここで登場するのが、reduceの第二引数に初期値を設定する。
+
+// const result = strArry.reduce((accu, curr) => {
+// 	//return accu + '<' + curr + '>'
+// 	return `${accu}<${curr}>`
+// }, "")
+
+// console.log(result);
+
+
+//実際にreduce関数を作成してみる。reduceを使用しないで使えるように
+const str = 'animation';
+const strArry = str.split('');
+
+function tag(accu, curr) {
+	return `${accu}<${curr}>`;
+}
+
+
+function reduce(arry, callback, defaultValue) {
+	let accu = defaultValue;
+	for(let i = 0; i < array.length; i++) {
+		let curr = arry[i];
+		//accuにcallbackから返ってきた値が処理が走るたびに格納されていく。
+		accu = callback(accu, curr);
+	}
+	return accu;
+}
+
+const result = reduce(strArry, tag, "");
+
+
+console.log(result);

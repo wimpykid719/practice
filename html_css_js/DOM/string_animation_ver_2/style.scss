@@ -1,0 +1,48 @@
+@import "mixin";
+
+html {
+    font-family: 'Teko', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+#container {
+  position: relative;
+  height: 100vh;
+  background-color: teal;
+}
+
+.animate-title,
+.tween-animate-title {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  font-size: 2em;
+
+  &.inview {
+    opacity: 1;
+
+    & .char {
+      display: inline-block;
+    }
+  }
+}
+.animate-tile.inview .char {
+  @keyframes kf-animate-chars {
+    0% {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+

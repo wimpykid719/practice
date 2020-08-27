@@ -21,9 +21,22 @@
 		seconds = 0;
 		minutes = 0;
 		hours = 0;
+		let timer_id;
 		document.getElementById('start_stop').addEventListener('click', 
 		function () {
-			setInterval(timer, 1000);
+			if (this.innerHTML === 'START'){
+			timer_id = setInterval(timer, 1000);
+
+			this.innerHTML = 'STOP';
+			this.classList.remove('btn-primary');
+			this.classList.add('btn-danger');
+		} else {
+			clearInterval(timer_id);
+
+			this.innerHTML = 'START';
+			this.classList.remove('btn-danger');
+			this.classList.add('btn-primary');
+		}
 			
 		});
 		const timer = function() {
@@ -59,7 +72,7 @@
 				minutes = addzero(minutes);
 				hours = addzero(hours);
 
-				document.getElementById('timer').innerHTML = `${hours}：${minutes}：${seconds}`
+				document.getElementById('timer').innerHTML = `${hours}:${minutes}:${seconds}`
 		}
 	</script>
 </body>

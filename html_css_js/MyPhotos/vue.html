@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Photos</title>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<header>
+		<hi>My Photos</hi>
+	</header>
+
+	<div class="container">
+		<div id="img_unit">
+			<div class="photo" v-for="photo in photos">
+				<img :src="photo.path">
+				<div class="inner"><p>{{ photo.caption }}<span>{{ photo.name }}</span></p></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		const app = new Vue({
+			el: '#img_unit',
+			data: {
+				photos: []
+			},
+			created: function() {
+				let self = this;
+				$.getJSON('https://h2o-space.com/htmlbook/images.php', function(data) {
+					self.photos = data;
+				})
+			}
+		});
+	</script>
+</body>
+</html>

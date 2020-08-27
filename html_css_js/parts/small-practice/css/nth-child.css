@@ -1,0 +1,36 @@
+@charset "UTF-8";
+a {
+  color: orange;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  color: red;
+}
+
+a:focus {
+  color: green;
+}
+
+a:active {
+  color: purple;
+}
+
+div span {
+  color: olive;
+  /*
+        :nth-child()との違い
+        nth=childはspanの要素群に別のタグが紛れている場合は適用を無視して
+        span要素が見つかるまで次に行くのだが飛ばした際に適用する予定のプロパティも一緒に飛ばすため
+        せっかく記述したプロパティが無駄に終わる。
+        そこでnth-of-typeを使用するとspan（これを適用してるhtmlの場合ね）要素以外は無視をして次に進む事ができる。
+        */
+}
+
+div span:not(.cls) {
+  color: black;
+}
+/*# sourceMappingURL=nth-child.css.map */

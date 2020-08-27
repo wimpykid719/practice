@@ -1,0 +1,42 @@
+a {
+    color: orange;
+
+    &:visited {
+        color: blue;
+    }
+    &:hover {
+        color: red;
+    }
+    //最後にクリックしたものに色が付く
+    &:focus {
+        color: green;
+    }
+    //クリックした瞬間に色が付く
+    &:active {
+        color: purple;
+    }
+}
+
+div {
+    & span {
+        color: olive;
+    
+        //2nかevenなど指定すると2の倍数ごとに色を指定できる。奇数の場合は2n + 1かodd
+        // &:nth-child(3) {
+        //     color: purple;
+        // }
+        /*
+        :nth-child()との違い
+        nth=childはspanの要素群に別のタグが紛れている場合は適用を無視して
+        span要素が見つかるまで次に行くのだが飛ばした際に適用する予定のプロパティも一緒に飛ばすため
+        せっかく記述したプロパティが無駄に終わる。
+        そこでnth-of-typeを使用するとspan（これを適用してるhtmlの場合ね）要素以外は無視をして次に進む事ができる。
+        */
+        // &:nth-of-type(2) {
+        //     color: red;
+        // }
+        &:not(.cls) {
+            color: black;
+        }
+    }
+}

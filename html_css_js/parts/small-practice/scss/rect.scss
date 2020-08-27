@@ -1,0 +1,95 @@
+#container {
+  text-align: center;
+}
+
+
+// @mixin animation(
+//   $name,
+//   $duration:1s
+// ) {
+//   animation-name: $name;
+//   animation-duration: $duration;
+
+  
+// }
+
+//省略した書き方最初が同じプロパティ名の場合
+@mixin animation(
+  $name,
+  $duration:1s
+) {
+    animation: {
+      name: $name;
+      duration: $duration;
+    }
+}
+
+.rect {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  //widthの値が設定されていないと効かない。
+  
+  background-color: orangered;
+  //縦　横で効く。%での指定も可能物体のサイズで算出する。
+  /*
+  x軸方向にのみ動かしたい場合はtranslateXを使用する事可能
+  */
+  //transform: translate(50px, 50px);
+  //transform: rotate(-30deg);
+
+  //x,y軸それぞれある。
+  //transform: skew(-30deg);
+
+  //元々あった物体の左上を支点に回転させる事が出来ます。
+  //button right, center centerなどあり任意の値も指定可能
+  //transform-origin: center center ;
+
+  //無限にアニメーションする1.4秒感覚で
+  //animation: sk-bouncedelay 1.4s infinite;
+
+  //下記のコードをmixinを用いてリファクタリングしていく。
+  @include animation(
+    $name: sk-bouncedelay
+  );
+  
+
+  /*
+
+  animation: sk-bouncedelay 1.4s;
+  animation-timing-function: ease;
+  
+  //3秒後にアニメーションがスタートされる
+  //animation-delay: 3s;
+
+  //アニメートする数を指定する事ができる。もちろんinfinite可能
+  animation-iteration-count: infinite;
+
+  //アニメーションの推移する方向を決めるデフォルトは0%~100%これを逆にする。
+  //animation-direction: reverse;
+
+  //最初は0~100次に100~0これを繰り返す。
+  animation-direction: alternate;
+  
+  //これはアニメーションが終了した状態のスケールをそのままにする。transform: scale(0);よりも優先される。bothでどちらの状態も
+  //残せる重なっている事になるのかな？
+  animation-fill-mode: forwards;
+
+  */
+
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+//from~toといった記載方法もある。
+@keyframes sk-bouncedelay {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

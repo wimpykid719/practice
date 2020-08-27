@@ -1,0 +1,68 @@
+@charset "UTF-8";
+#container {
+  text-align: center;
+}
+
+.rect {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  background-color: orangered;
+  /*
+  x軸方向にのみ動かしたい場合はtranslateXを使用する事可能
+  */
+  -webkit-animation-name: sk-bouncedelay;
+          animation-name: sk-bouncedelay;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  /*
+
+  animation: sk-bouncedelay 1.4s;
+  animation-timing-function: ease;
+  
+  //3秒後にアニメーションがスタートされる
+  //animation-delay: 3s;
+
+  //アニメートする数を指定する事ができる。もちろんinfinite可能
+  animation-iteration-count: infinite;
+
+  //アニメーションの推移する方向を決めるデフォルトは0%~100%これを逆にする。
+  //animation-direction: reverse;
+
+  //最初は0~100次に100~0これを繰り返す。
+  animation-direction: alternate;
+  
+  //これはアニメーションが終了した状態のスケールをそのままにする。transform: scale(0);よりも優先される。bothでどちらの状態も
+  //残せる重なっている事になるのかな？
+  animation-fill-mode: forwards;
+
+  */
+}
+
+.paused {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/*# sourceMappingURL=rect.css.map */

@@ -1,0 +1,22 @@
+@mixin animation($name, $duration: 1s, $timing-function: ease, $delay: 0s, $iteration-count: 1, $direction: normal, $fill-mode: forwards) {
+  animation: {
+    name: $name;
+    duration: $duration;
+    timing-function: $timing-function;
+    delay: $delay;
+    iteration-count: $iteration-count;
+    direction: $direction;
+    fill-mode: $fill-mode;
+  }
+}
+//関数呼び出す名前なので好きなのを付けれる。
+@mixin background($image, $repeat: no-repeat, $position: center, $size: cover) {
+  //実際に存在するプロパティ名を記載
+  background: {
+    image: url(#{$image});
+    repeat: $repeat;
+    position: $position;
+    size: $size; 
+  }
+
+}

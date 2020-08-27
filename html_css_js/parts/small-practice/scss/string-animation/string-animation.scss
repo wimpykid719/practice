@@ -1,0 +1,52 @@
+//アンダーバー、拡張子も自動で判別してもらえるので必要ない。
+@import 'mixin';
+
+body {
+    margin: 0;
+}
+
+#container {
+    position: relative;
+    //画面幅に合わせて一杯に広がる。中央に配置される。
+    height: 100vh;
+    background-color: teal;
+}
+
+.animate-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0;
+
+    &.inview {
+        opacity: 1;
+        & .char {
+            display: inline-block;
+
+            @include animation($name: kf-animate-chars,
+                $duration: 0.5s,
+                $timing-function: cubic-bezier(0.39, 1.57, 0.58, 1),
+                $fill-mode: both
+                );
+
+                @for $i from 1 through 10 {
+                    &:nth-child(#{$i}) {
+                        animation-delay: $i * 0.04s;
+                    }
+                }
+        }
+    }
+}
+
+@keyframes kf-animate-chars {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

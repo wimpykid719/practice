@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+<script>
+	let ajax = new XMLHttpRequest();
+	ajax.open('GET', 'https://h2o-space.com/htmlbook/images.php');
+	ajax.responseType = 'json';
+	ajax.send(null);
+
+	//readystateプロパティの値は以下の種類になってる。
+	/*
+	0: UNSENT インスタンスが出来た。
+	1: OPENED openメソッドを利用した
+	2: HEADERS_RECEIVED ヘッダーを受信出来た。
+	3: LOADING データを受信中である。
+	4: DONE 通信が終了した。
+	*/
+	ajax.onreadystatechange = function() {
+		if(ajax.readyState === XMLHttpRequest.DONE && ajax.status === 200) {
+			this.response.forEach(element => {
+				alert(element.path);
+			});
+		}
+	};
+</script>
+</body>
+</html>
