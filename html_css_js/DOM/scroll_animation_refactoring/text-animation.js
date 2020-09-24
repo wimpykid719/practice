@@ -8,6 +8,8 @@ class TextAnimation {
         // console.log(test);
 
 
+        //　instanceof obj が Class (または、それを継承しているクラス)に属している場合に true を返します。
+        // 多分だけどHTMLElementはHTML要素が全てクラスに格納されたものじゃないかな??
         // if(el instanceof HTMLElement) {
         //     this.DOM.el = el;
         // } else {
@@ -16,6 +18,7 @@ class TextAnimation {
         // }
     
         // 上記の条件式と同じ意味
+        console.log(HTMLElement);
         this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
 
 

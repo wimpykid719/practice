@@ -1,6 +1,17 @@
 # Python分からない所
 学習する過程でつまづいた所を残して行きます。
 
+## Enum型
+普通の変数見たいで無い変数を呼び出した際にエラー処理がプログラムで制御出来るのでそのまま処理を続けられる。
+
+## format()
+これは文字列の中で変数を展開する時に使用する。
+
+    name = 'david'
+    great ='hello {}'.format(name)
+    print(great)
+    結果：hello david
+
 ## join()
 
 これを使用すると文字列のリストを一つの文字列に連結できる。
@@ -140,6 +151,9 @@ pythonの標準モジュールで任意の文字コードでファイルを開�
 分からない。
 
 ### 参照
+[Enum型](https://techacademy.jp/magazine/33675)
+[format関数](https://www.headboost.jp/python-strings-variables/)
+[format関数、時間無い向け](https://note.nkmk.me/python-f-strings/)
 [クラスメソッドについて](https://blog.pyq.jp/entry/Python_kaiketsu_190205)
 [codecsのignoreについて](https://qiita.com/butada/items/33db39ced989c2ebf644)
 [特殊文字について](https://techacademy.jp/magazine/18915)

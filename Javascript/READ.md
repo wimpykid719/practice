@@ -194,8 +194,13 @@ HTMLを操作したりする関数を紹介する。
 これは`.querySelector`などで取得した要素のオブジェクトから値を文字列で取り出して操作しやすくしてくれる。逆に要素に対して代入する事もできる。
 そのためHTMLファイルの変更を用意にしてくれる。
 
+### Object.assign()
+
+これはオブジェクトに元々ある値を上書きで変更したり、新しく値を追加する際に使用する。参照ではなくコピーして新しくオブジェクトを作成する。
+
 
 ### 参照
 [forEachとmapの使い分け](https://yukimonkey.com/data/map-foreach/)
 [initialValue](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
 [outerHTML](https://developer.mozilla.org/ja/docs/Web/API/Element/outerHTML)
+[Object.assign](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)

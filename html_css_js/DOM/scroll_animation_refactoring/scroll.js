@@ -10,13 +10,15 @@ class ScrollObserver {
             threshold: 0,
             once: true
         };
-        this.cb = cb;
+        this.cb = cb;// text-animationが入ってる。
+        // 引数で{once: false}の場合はoneceをfalseに変更する。
         this.options = Object.assign(defaultOptuions, options);
         this.once = this.options.once;
         this._init();
     }
     _init() {
         //このentriesはio.observe(child)、io.observe(child2)...のように監視する対象が複数ある場合にこちらにentriesに格納される。
+        // this.elsの所でentriesの内容を作成している。
         //関数だから順番は合ってる。コールバック関数として渡される。
         const callback = function(entries, observer) {
             entries.forEach(entry => {
@@ -27,8 +29,9 @@ class ScrollObserver {
                     // ta.animate();
                     //entry.target.classList.add('inview');
                     this.cb(entry.target, true);
+                    // this.onceで監視を切って、cbでテキストのアニメーションを切る。
                     if(this.once) {
-                        // 監視を停止するには
+                        // 監視を停止するには再び分割されるのを回避するため
                         observer.unobserve(entry.target);
                     }
                 } else {
@@ -40,6 +43,7 @@ class ScrollObserver {
             });
             //alert('intersectiong');
         };
+        //callbackは監視要素と交差した時に実行される。callback→cbと関数の中に関数
         this.io = new IntersectionObserver(callback.bind(this), this.options);
         this.io.POLL_INTERVAL = 100;
         // queryselectorAllで取得したdiv要素
